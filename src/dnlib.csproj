@@ -5,11 +5,7 @@
   <PropertyGroup>
     <DefineConstants>$(DefineConstants);$(MoreDefineConstants)</DefineConstants>
     <DefineConstants Condition=" '$(DnlibThreadSafe)' != 'false' ">$(DefineConstants);THREAD_SAFE</DefineConstants>
-    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
-    <!-- It's not possible to target .NET Framework 3.5 when using dotnet build
-         https://github.com/Microsoft/msbuild/issues/1333 -->
-    <NoTargetFrameworkNet35 Condition=" '$(NoTargetFrameworkNet35)' == '' AND '$(MSBuildRuntimeType)' == 'Core' ">true</NoTargetFrameworkNet35>
-    <TargetFrameworks Condition=" '$(NoTargetFrameworkNet35)' != 'true' ">$(TargetFrameworks);net35</TargetFrameworks>
+    <TargetFrameworks>net5.0;net48</TargetFrameworks>
 
     <Description>Reads and writes .NET assemblies and modules</Description>
     <Title>$(Description)</Title>
@@ -45,6 +41,11 @@ For better *Windows PDB* writer support, you should add a reference to `Microsof
 
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);SYSLIB0011</NoWarn>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

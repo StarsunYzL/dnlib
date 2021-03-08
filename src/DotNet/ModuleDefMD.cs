@@ -207,7 +207,7 @@ namespace dnlib.DotNet {
 		public static ModuleDefMD Load(System.Reflection.Module mod, ModuleContext context, ImageLayout imageLayout) => Load(mod, new ModuleCreationOptions(context), imageLayout);
 
 		static IntPtr GetModuleHandle(System.Reflection.Module mod) {
-#if NETSTANDARD
+#if (NETSTANDARD || NET)
 			var GetHINSTANCE = typeof(Marshal).GetMethod("GetHINSTANCE", new[] { typeof(System.Reflection.Module) });
 			if (GetHINSTANCE is null)
 				return IntPtr.Zero;

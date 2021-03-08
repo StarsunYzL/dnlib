@@ -155,7 +155,9 @@ namespace dnlib.DotNet.Pdb.Dss {
 		}
 
 		public override void Dispose() {
+#if NETFRAMEWORK
 			Marshal.FinalReleaseComObject(writer);
+#endif
 			if (ownsStream)
 				pdbStream.Dispose();
 		}
